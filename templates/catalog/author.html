@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>{{ object.username }}</h2>
+<p>{{ object.first_name }} {{ object.last_name }}</p>
+<p>{{ objects.email }}</p>
+<a href="{% url 'catalog:user_posts' pk=post.id %}">All posts of this author</a>
+</body>
+</html>

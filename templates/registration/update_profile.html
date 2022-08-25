@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{% url 'password_change' %}" class="btn btn-info">Change password</a>
+  </form>
+</body>
+</html>
