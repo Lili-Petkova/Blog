@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Posts of "{{ author }}"</h2>
+<div>
+    {% for i in post %}
+
+    {% endfor %}
+</div>
+<div>
+    {% if paginator %}
+        {% for i in page_posts %}
+             <p><a href="{% url 'catalog:one_post' pk=i.id %}">"{{ i.title }}"</a></p>
+        {% endfor %}
+    {% endif %}
+</div>
+<p>
+    {% if page_posts.has_previous %}
+        <a href="?page={{page_posts.previous_page_number}}">previous</a>
+    {% endif %}
+    {% for i in paginator.page_range %}
+        <a href="?page={{ i }}">{{ i }}</a>
+    {% endfor %}
+    {% if page_posts.has_next %}
+        <a href="?page={{page_posts.next_page_number}}">next</a>
+    {% endif %}
+</p>
+</body>
+</html>

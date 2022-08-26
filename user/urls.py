@@ -1,6 +1,6 @@
-from django.urls import path
+from user.views import RegisterFormView, UpdateProfile, UserLogoutView, UserProfile
 
-from user.views import RegisterFormView, UserProfile, UpdateProfile, UserLogoutView
+from django.urls import path
 
 app_name = 'user'
 urlpatterns = [

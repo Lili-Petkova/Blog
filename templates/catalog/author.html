@@ -7,7 +7,7 @@
 <body>
 <h2>{{ object.username }}</h2>
 <p>{{ object.first_name }} {{ object.last_name }}</p>
-<p>{{ objects.email }}</p>
-<a href="{% url 'catalog:user_posts' pk=post.id %}">All posts of this author</a>
+<p>{{ object.email }}</p>
+<a href="{% url 'catalog:user_posts' pk=object.pk %}">All posts of this author</a>
 </body>
 </html>
