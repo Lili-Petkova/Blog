@@ -1,0 +1,8 @@
+{% extends "base_generic_old.html" %}
+
+{% block content %}
+  <p>Username: {{ object.username }}</p>
+  <p>Email: {{ object.email }}</p>
+  <p><a href="{% url "catalog:own_posts" %}">My posts</a></p>
+  <a href="{% url "user:update_profile" %}">Update my profile</a>
+{% endblock %}

@@ -25,16 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
+    'www.example.com',
 ]
 
-INTERNAL_IPS = [
-    "127.0.0.1"
-]
+INTERNAL_IPS = []
 
 
 # Application definition
@@ -156,8 +153,6 @@ CACHES = {
         }
     }
 }
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CELERY_TIMEZONE = 'UTC'
 CELERY_TASK_TRACK_STARTED = True

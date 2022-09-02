@@ -1,0 +1,10 @@
+{% extends "base_generic_old.html" %}
+
+{% block content %}
+<h2>"{{ object.title }}"</h2>
+<p>{{ object.author }} {{ object.pub_date }}</p>
+<p>{{ object.full_text }}</p>
+<p><a href="{% url 'catalog:update_post' pk=object.pk %}">update </a>or
+<a href="{% url 'catalog:delete_post' pk=object.pk %}">delete this postk</a></p>
+<p><a href="{% url 'catalog:all_posts' %}">back to all posts</a></p>
+{% endblock %}

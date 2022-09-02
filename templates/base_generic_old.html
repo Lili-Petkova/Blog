@@ -1,0 +1,106 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>Blog</title>
+      <script src="{% static 'js/library.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<header>
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+  <a class="navbar-brand" href="{% url 'catalog:all_posts' %}">Blog</a>
+
+  <div class="collapse navbar-collapse" id="main-menu">
+    <ul class="navbar-nav mr-auto">
+        <button type="button" class="btn js-contact"  data-url="{% url 'catalog:contact' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Contact us
+    </button>
+    </ul>
+
+    <div class="collapse navbar-collapse" id="main-menu">
+        <ul class="navbar-nav mr-auto">
+            <a href="{% url 'catalog:create_post' %}">
+            <button type="button" class="btn" >
+                <span class="glyphicon glyphicon-plus"></span>
+                    Create post
+            </button></a>
+        </ul>
+    </div>
+  </div>
+</nav>
+</header>
+
+<div class="modal fade" id="contactModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+    {% include 'catalog/includes/success.html' %}
+</div>
+
+{% if messages %}
+     <div class="row">
+         <div class="col-sm-12">
+                {% for message in messages %}
+                     <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+                         <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error
+                         {% else %} {{ message.tags|title }}
+                         {% endif %}!
+                         </strong> {{ message }}
+                     </div>
+                {% endfor %}
+         </div>
+     </div>
+{% endif %}
+<div class="container text-center" style="padding-top: 100px;" >
+  <div class="row justify-content-center">
+    <div class="col-sm-2">
+      {% block sidebar %}
+          <li><a href="{% url 'catalog:start' %}">Home</a></li>
+        <li><a href="{% url 'catalog:all_posts' %}">Posts</a></li>
+
+        <ul class="sidebar-nav">
+          {% if user.is_authenticated %}
+            <li>User: {{ user.get_username }}</li>
+            <li><a href="{% url 'user:profile' %}">My profile</a></li>
+              <li><a href="{% url 'catalog:own_posts' %}">My posts</a></li>
+                    <a href="{% url "user:logout" %}?next={% url "catalog:start" %}">logout</a>
+          {% else %}
+            <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+            <li><a href="{% url 'user:register' %}?next={{ request.path }}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+         {% endblock %}
+      <div class="col-sm-10 ">
+      {% block content %}{% endblock %}
+    </div>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+
+</div>
+
+</body>
+</html>
