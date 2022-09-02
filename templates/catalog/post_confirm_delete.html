@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_generic_old.html" %}
+
+{% block content %}
 <h1>Delete post</h1>
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete post "{{ object.title }}"?</p>
+<form method="POST" class="form-group" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Are you sure you want to delete post "{{ post.title }}"?</p>
     <input type="submit" value="Yes">
 </form>
-{#<p><a href="{% url 'library:detail_book' pk=object.pk %}">back to the book</a></p>#}
-</body>
-</html>
+{% endblock %}

@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>Posts of "{{ author }}"</h2>
-<div>
-    {% for i in post %}
+{% extends "base_generic_old.html" %}
 
-    {% endfor %}
-</div>
+{% block content %}
+<h2>Posts of "{{ author }}"</h2>
 <div>
     {% if paginator %}
         {% for i in page_posts %}
              <p><a href="{% url 'catalog:one_post' pk=i.id %}">"{{ i.title }}"</a></p>
+            <p><img src='/{{ i.image }}' alt="image" width=100% height=100%></p>
         {% endfor %}
     {% endif %}
 </div>
@@ -29,5 +21,4 @@
         <a href="?page={{page_posts.next_page_number}}">next</a>
     {% endif %}
 </p>
-</body>
-</html>
+{% endblock %}

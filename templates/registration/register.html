@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog - Registration</title>
-</head>
-<body>
+{% extends "base_generic_old.html" %}
+
+{% block content %}
 <h2>Sign Page</h2>
     <form method="POST">
         {% csrf_token %}
@@ -14,6 +10,4 @@
         <button type="submit">Register</button>
         <a href="{% url 'catalog:start' %}">Home</a>
     </form>
-
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_generic_old.html" %}
+
+{% block content %}
 <h1>My posts</h1>
 
   {% if post_list %}
@@ -39,5 +35,4 @@
         {% endif %}
     {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}

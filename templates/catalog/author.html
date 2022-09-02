@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_generic_old.html" %}
+
+{% block content %}
 <h2>{{ object.username }}</h2>
 <p>{{ object.first_name }} {{ object.last_name }}</p>
 <p>{{ object.email }}</p>
 <a href="{% url 'catalog:user_posts' pk=object.pk %}">All posts of this author</a>
-</body>
-</html>
+{% endblock %}
